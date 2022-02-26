@@ -1,0 +1,89 @@
+Unnamed: 0,Airline,Source,Destination,codeshare,transfers,planes,source_lat,dest_lat,source_lon,dest_lon,Source Airport Name,Destination Airport Name,Trace_name
+1045,4Q,AUH,KBL,False,0,['320'],24.426912,34.56069,54.645973,69.21152,Abu Dhabi International Airport (AUH),Kabul International Airport (KBL),From AUH to KBL
+1046,4Q,BAH,KBL,False,0,['320'],26.26918,34.56069,50.62605,69.21152,Bahrain International Airport (BAH),Kabul International Airport (KBL),From BAH to KBL
+1047,4Q,DEL,KBL,False,0,['320'],28.556555,34.56069,77.10079,69.21152,Indira Gandhi International Airport (DEL),Kabul International Airport (KBL),From DEL to KBL
+1048,4Q,DXB,KBL,False,0,['320'],25.248665,34.56069,55.352917,69.21152,Dubai Airport (DXB),Kabul International Airport (KBL),From DXB to KBL
+1049,4Q,HEA,KBL,False,0,['320'],34.212696,34.56069,62.22599,69.21152,Herat International Airport (HEA),Kabul International Airport (KBL),From HEA to KBL
+1050,4Q,KBL,AUH,False,0,['320'],34.56069,24.426912,69.21152,54.645973,Kabul International Airport (KBL),Abu Dhabi International Airport (AUH),From KBL to AUH
+1051,4Q,KBL,BAH,False,0,['320'],34.56069,26.26918,69.21152,50.62605,Kabul International Airport (KBL),Bahrain International Airport (BAH),From KBL to BAH
+1052,4Q,KBL,DEL,False,0,['320'],34.56069,28.556555,69.21152,77.10079,Kabul International Airport (KBL),Indira Gandhi International Airport (DEL),From KBL to DEL
+1053,4Q,KBL,DXB,False,0,['320'],34.56069,25.248665,69.21152,55.352917,Kabul International Airport (KBL),Dubai Airport (DXB),From KBL to DXB
+1054,4Q,KBL,HEA,False,0,['320'],34.56069,34.212696,69.21152,62.22599,Kabul International Airport (KBL),Herat International Airport (HEA),From KBL to HEA
+8456,AI,DEL,KBL,False,0,['319'],28.556555,34.56069,77.10079,69.21152,Indira Gandhi International Airport (DEL),Kabul International Airport (KBL),From DEL to KBL
+8595,AI,KBL,DEL,False,0,['319'],34.56069,28.556555,69.21152,77.10079,Kabul International Airport (KBL),Indira Gandhi International Airport (DEL),From KBL to DEL
+21372,EP,IKA,KBL,False,0,['72S'],35.40863,34.56069,51.1548,69.21152,Imam Khomeini International Airport (IKA),Kabul International Airport (KBL),From IKA to KBL
+21376,EP,KBL,IKA,False,0,['72S'],34.56069,35.40863,69.21152,51.1548,Kabul International Airport (KBL),Imam Khomeini International Airport (IKA),From KBL to IKA
+21377,EP,KBL,MHD,False,0,['72S'],34.56069,36.227173,69.21152,59.64165,Kabul International Airport (KBL),Mashhad International Airport (MHD),From KBL to MHD
+21378,EP,KDH,IKA,False,0,['72S'],31.506945,35.40863,65.8475,51.1548,Kandahar Airport (KDH),Imam Khomeini International Airport (IKA),From KDH to IKA
+21379,EP,KDH,MHD,False,0,['72S'],31.506945,36.227173,65.8475,59.64165,Kandahar Airport (KDH),Mashhad International Airport (MHD),From KDH to MHD
+21405,EP,MHD,KBL,False,0,['72S'],36.227173,34.56069,59.64165,69.21152,Mashhad International Airport (MHD),Kabul International Airport (KBL),From MHD to KBL
+21406,EP,MHD,KDH,False,0,['72S'],36.227173,31.506945,59.64165,65.8475,Mashhad International Airport (MHD),Kandahar Airport (KDH),From MHD to KDH
+21883,EY,AUH,KBL,True,0,['320'],24.426912,34.56069,54.645973,69.21152,Abu Dhabi International Airport (AUH),Kabul International Airport (KBL),From AUH to KBL
+21978,EY,KBL,AUH,True,0,['320'],34.56069,24.426912,69.21152,54.645973,Kabul International Airport (KBL),Abu Dhabi International Airport (AUH),From KBL to AUH
+22506,FG,DXB,KBL,False,0,"['737', '727']",25.248665,34.56069,55.352917,69.21152,Dubai Airport (DXB),Kabul International Airport (KBL),From DXB to KBL
+22507,FG,DXB,KDH,False,0,['727'],25.248665,31.506945,55.352917,65.8475,Dubai Airport (DXB),Kandahar Airport (KDH),From DXB to KDH
+22508,FG,DYU,KBL,False,0,['727'],38.54894,34.56069,68.81728,69.21152,Dushanbe Airport (DYU),Kabul International Airport (KBL),From DYU to KBL
+22509,FG,ESB,KBL,False,0,['310'],40.11494,34.56069,32.993145,69.21152,Esenboga International Airport (ESB),Kabul International Airport (KBL),From ESB to KBL
+22510,FG,IST,KBL,False,0,['313'],40.9769,34.56069,28.82055,69.21152,Istanbul New Airport (IST),Kabul International Airport (KBL),From IST to KBL
+22511,FG,KBL,DEL,False,0,['310'],34.56069,28.556555,69.21152,77.10079,Kabul International Airport (KBL),Indira Gandhi International Airport (DEL),From KBL to DEL
+22512,FG,KBL,DXB,False,0,"['313', '727']",34.56069,25.248665,69.21152,55.352917,Kabul International Airport (KBL),Dubai Airport (DXB),From KBL to DXB
+22513,FG,KBL,ESB,False,0,['310'],34.56069,40.11494,69.21152,32.993145,Kabul International Airport (KBL),Esenboga International Airport (ESB),From KBL to ESB
+22514,FG,KBL,IST,False,0,['313'],34.56069,40.9769,69.21152,28.82055,Kabul International Airport (KBL),Istanbul New Airport (IST),From KBL to IST
+22515,FG,KBL,IST,False,1,['737'],34.56069,40.9769,69.21152,28.82055,Kabul International Airport (KBL),Istanbul New Airport (IST),From KBL to IST
+22516,FG,KBL,SVO,False,0,['310'],34.56069,55.966324,69.21152,37.416573,Kabul International Airport (KBL),Sheremetyevo International Airport (SVO),From KBL to SVO
+22517,FG,KBL,URC,False,0,['727'],34.56069,43.90126,69.21152,87.47515,Kabul International Airport (KBL),Urumqi Diwopu International Airport (URC),From KBL to URC
+22518,FG,KDH,DEL,False,0,['727'],31.506945,28.556555,65.8475,77.10079,Kandahar Airport (KDH),Indira Gandhi International Airport (DEL),From KDH to DEL
+22519,FG,KDH,DXB,False,0,['727'],31.506945,25.248665,65.8475,55.352917,Kandahar Airport (KDH),Dubai Airport (DXB),From KDH to DXB
+22520,FG,SVO,KBL,False,0,['310'],55.966324,34.56069,37.416573,69.21152,Sheremetyevo International Airport (SVO),Kabul International Airport (KBL),From SVO to KBL
+22521,FG,URC,KBL,False,0,['313'],43.90126,34.56069,87.47515,69.21152,Urumqi Diwopu International Airport (URC),Kabul International Airport (KBL),From URC to KBL
+25950,FZ,DXB,KBL,False,0,['73H'],25.248665,34.56069,55.352917,69.21152,Dubai Airport (DXB),Kabul International Airport (KBL),From DXB to KBL
+25983,FZ,KBL,DXB,False,0,['73H'],34.56069,25.248665,69.21152,55.352917,Kabul International Airport (KBL),Dubai Airport (DXB),From KBL to DXB
+26814,G9,KBL,SHJ,False,0,['320'],34.56069,25.320873,69.21152,55.52029,Kabul International Airport (KBL),Sharjah International Airport (SHJ),From KBL to SHJ
+26858,G9,SHJ,KBL,False,0,['320'],25.320873,34.56069,55.52029,69.21152,Sharjah International Airport (SHJ),Kabul International Airport (KBL),From SHJ to KBL
+27210,GF,BAH,KBL,False,0,['320'],26.26918,34.56069,50.62605,69.21152,Bahrain International Airport (BAH),Kabul International Airport (KBL),From BAH to KBL
+27211,GF,BAH,KBL,True,0,['320'],26.26918,34.56069,50.62605,69.21152,Bahrain International Airport (BAH),Kabul International Airport (KBL),From BAH to KBL
+27281,GF,KBL,BAH,False,0,['320'],34.56069,26.26918,69.21152,50.62605,Kabul International Airport (KBL),Bahrain International Airport (BAH),From KBL to BAH
+27282,GF,KBL,BAH,True,0,['320'],34.56069,26.26918,69.21152,50.62605,Kabul International Airport (KBL),Bahrain International Airport (BAH),From KBL to BAH
+43682,PK,ISB,KBL,False,0,"['733', 'AT5']",33.55429,34.56069,72.83417,69.21152,Islamabad International Airport (ISB),Kabul International Airport (KBL),From ISB to KBL
+43708,PK,KBL,ISB,False,0,"['733', 'AT5']",34.56069,33.55429,69.21152,72.83417,Kabul International Airport (KBL),Islamabad International Airport (ISB),From KBL to ISB
+43709,PK,KBL,PEW,False,0,['AT5'],34.56069,33.989082,69.21152,71.51925,Kabul International Airport (KBL),Bacha Khan International Airport (PEW),From KBL to PEW
+43822,PK,PEW,KBL,False,0,['AT5'],33.989082,34.56069,71.51925,69.21152,Bacha Khan International Airport (PEW),Kabul International Airport (KBL),From PEW to KBL
+45770,RQ,DEL,KBL,False,0,['M82'],28.556555,34.56069,77.10079,69.21152,Indira Gandhi International Airport (DEL),Kabul International Airport (KBL),From DEL to KBL
+45771,RQ,DEL,KDH,False,0,['M82'],28.556555,31.506945,77.10079,65.8475,Indira Gandhi International Airport (DEL),Kandahar Airport (KDH),From DEL to KDH
+45772,RQ,DXB,KBL,False,0,"['320', 'M82']",25.248665,34.56069,55.352917,69.21152,Dubai Airport (DXB),Kabul International Airport (KBL),From DXB to KBL
+45773,RQ,DXB,KDH,False,0,['320'],25.248665,31.506945,55.352917,65.8475,Dubai Airport (DXB),Kandahar Airport (KDH),From DXB to KDH
+45774,RQ,DYU,KBL,False,0,['M82'],38.54894,34.56069,68.81728,69.21152,Dushanbe Airport (DYU),Kabul International Airport (KBL),From DYU to KBL
+45775,RQ,HEA,KBL,False,0,['M82'],34.212696,34.56069,62.22599,69.21152,Herat International Airport (HEA),Kabul International Airport (KBL),From HEA to KBL
+45776,RQ,IKA,KDH,False,0,['M82'],35.40863,31.506945,51.1548,65.8475,Imam Khomeini International Airport (IKA),Kandahar Airport (KDH),From IKA to KDH
+45778,RQ,KBL,DEL,False,0,"['M82', 'M83']",34.56069,28.556555,69.21152,77.10079,Kabul International Airport (KBL),Indira Gandhi International Airport (DEL),From KBL to DEL
+45779,RQ,KBL,DME,False,0,['320'],34.56069,55.414566,69.21152,37.899494,Kabul International Airport (KBL),Moscow Domodedovo Airport (DME),From KBL to DME
+45780,RQ,KBL,DXB,False,0,"['320', 'M82']",34.56069,25.248665,69.21152,55.352917,Kabul International Airport (KBL),Dubai Airport (DXB),From KBL to DXB
+45781,RQ,KBL,DYU,False,0,['M82'],34.56069,38.54894,69.21152,68.81728,Kabul International Airport (KBL),Dushanbe Airport (DYU),From KBL to DYU
+45782,RQ,KBL,HEA,False,0,['M82'],34.56069,34.212696,69.21152,62.22599,Kabul International Airport (KBL),Herat International Airport (HEA),From KBL to HEA
+45783,RQ,KBL,KDH,False,0,"['737', '320', 'M82', 'M83']",34.56069,31.506945,69.21152,65.8475,Kabul International Airport (KBL),Kandahar Airport (KDH),From KBL to KDH
+45784,RQ,KBL,MZR,False,0,['737'],34.56069,36.70919,69.21152,67.20849,Kabul International Airport (KBL),Mazar-I-Sharif Airport (MZR),From KBL to MZR
+45785,RQ,KDH,DEL,False,0,['M82'],31.506945,28.556555,65.8475,77.10079,Kandahar Airport (KDH),Indira Gandhi International Airport (DEL),From KDH to DEL
+45786,RQ,KDH,DXB,False,0,['320'],31.506945,25.248665,65.8475,55.352917,Kandahar Airport (KDH),Dubai Airport (DXB),From KDH to DXB
+45787,RQ,KDH,IKA,False,0,['M82'],31.506945,35.40863,65.8475,51.1548,Kandahar Airport (KDH),Imam Khomeini International Airport (IKA),From KDH to IKA
+45788,RQ,KDH,KBL,False,0,"['737', '320', 'M82', 'M83']",31.506945,34.56069,65.8475,69.21152,Kandahar Airport (KDH),Kabul International Airport (KBL),From KDH to KBL
+45789,RQ,KDH,MHD,False,0,['M83'],31.506945,36.227173,65.8475,59.64165,Kandahar Airport (KDH),Mashhad International Airport (MHD),From KDH to MHD
+45790,RQ,MHD,KDH,False,0,['M83'],36.227173,31.506945,59.64165,65.8475,Mashhad International Airport (MHD),Kandahar Airport (KDH),From MHD to KDH
+45791,RQ,MZR,KBL,False,0,['737'],36.70919,34.56069,67.20849,69.21152,Mazar-I-Sharif Airport (MZR),Kabul International Airport (KBL),From MZR to KBL
+47111,SG,DEL,KBL,False,0,['737'],28.556555,34.56069,77.10079,69.21152,Indira Gandhi International Airport (DEL),Kabul International Airport (KBL),From DEL to KBL
+47178,SG,KBL,DEL,False,0,['737'],34.56069,28.556555,69.21152,77.10079,Kabul International Airport (KBL),Indira Gandhi International Airport (DEL),From KBL to DEL
+50823,TK,IST,KBL,False,0,"['320', '330']",40.9769,34.56069,28.82055,69.21152,Istanbul New Airport (IST),Kabul International Airport (KBL),From IST to KBL
+50942,TK,KBL,IST,False,0,"['320', '330']",34.56069,40.9769,69.21152,28.82055,Kabul International Airport (KBL),Istanbul New Airport (IST),From KBL to IST
+60243,W2,DEL,KBL,True,0,['762'],28.556555,34.56069,77.10079,69.21152,Indira Gandhi International Airport (DEL),Kabul International Airport (KBL),From DEL to KBL
+60244,W2,DEL,KDH,True,0,['762'],28.556555,31.506945,77.10079,65.8475,Indira Gandhi International Airport (DEL),Kandahar Airport (KDH),From DEL to KDH
+60245,W2,DME,KBL,True,0,['320'],55.414566,34.56069,37.899494,69.21152,Moscow Domodedovo Airport (DME),Kabul International Airport (KBL),From DME to KBL
+60246,W2,DXB,KBL,True,0,['320'],25.248665,34.56069,55.352917,69.21152,Dubai Airport (DXB),Kabul International Airport (KBL),From DXB to KBL
+60247,W2,DXB,KDH,True,0,['320'],25.248665,31.506945,55.352917,65.8475,Dubai Airport (DXB),Kandahar Airport (KDH),From DXB to KDH
+60249,W2,DYU,KBL,True,0,['M83'],38.54894,34.56069,68.81728,69.21152,Dushanbe Airport (DYU),Kabul International Airport (KBL),From DYU to KBL
+60270,W2,KBL,DEL,True,0,['762'],34.56069,28.556555,69.21152,77.10079,Kabul International Airport (KBL),Indira Gandhi International Airport (DEL),From KBL to DEL
+60271,W2,KBL,DME,True,0,['320'],34.56069,55.414566,69.21152,37.899494,Kabul International Airport (KBL),Moscow Domodedovo Airport (DME),From KBL to DME
+60272,W2,KBL,DXB,True,0,['320'],34.56069,25.248665,69.21152,55.352917,Kabul International Airport (KBL),Dubai Airport (DXB),From KBL to DXB
+60273,W2,KBL,DYU,True,0,['M83'],34.56069,38.54894,69.21152,68.81728,Kabul International Airport (KBL),Dushanbe Airport (DYU),From KBL to DYU
+60274,W2,KBL,KDH,True,0,"['762', '320']",34.56069,31.506945,69.21152,65.8475,Kabul International Airport (KBL),Kandahar Airport (KDH),From KBL to KDH
+60275,W2,KDH,DEL,True,0,['762'],31.506945,28.556555,65.8475,77.10079,Kandahar Airport (KDH),Indira Gandhi International Airport (DEL),From KDH to DEL
+60276,W2,KDH,DXB,True,0,['320'],31.506945,25.248665,65.8475,55.352917,Kandahar Airport (KDH),Dubai Airport (DXB),From KDH to DXB
+60277,W2,KDH,KBL,True,0,"['762', '320']",31.506945,34.56069,65.8475,69.21152,Kandahar Airport (KDH),Kabul International Airport (KBL),From KDH to KBL
