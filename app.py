@@ -6,6 +6,7 @@ import dash_bootstrap_components as dbc
 import pandas as pd
 import numpy as np
 import json
+import os
 #from preprocessing import generate_airport_data, generate_route_data, generate_total_flights_data, generate_country_level_data, generate_route_data_with_coordinates
 
 #Starting Pre-Processing
@@ -18,10 +19,12 @@ import json
 #print("FINISHED PRE-PROCESSING")
 
 #Data
-route_df = pd.read_csv("routes_world_data_with_coordinates.csv")   #Function generated
-total_flights_df = pd.read_csv("total_flights_with_coordinates_with_scale.csv")    #Function generated
-country_level_df = pd.read_csv("Country level flight data.csv")    #Function generated
-airport_df = pd.read_csv("airports_with_country_names.csv")        #Function generated
+path = os.getcwd()
+relpath = path+"/data/"
+route_df = pd.read_csv(relpath+"routes_world_data_with_coordinates.csv")   #Function generated
+total_flights_df = pd.read_csv(relpath+"total_flights_with_coordinates_with_scale.csv")    #Function generated
+country_level_df = pd.read_csv(relpath+"Country level flight data.csv")    #Function generated
+airport_df = pd.read_csv(relpath+"airports_with_country_names.csv")        #Function generated
 
 countries = total_flights_df["country_name"].unique()
 countries.sort()
@@ -59,8 +62,8 @@ def generate_country_level_bar_map(array_selected_countries=[]):
                                                 y=country_level_df_new["Country"], orientation='h',
                                                 width=width)]
                         )
-    country_bar_map.update_layout( margin={"r":20,"t":20,"l":20,"b":20},height=height,
-                                      uniformtext_minsize=12, uniformtext_mode='hide')
+    country_bar_map.update_layout( margin={"r":20,"t":20,"l":20,"b":20},height=height,   paper_bgcolor='rgb(128,128,128)',
+                                      uniformtext_minsize=12, uniformtext_mode='hide', font=dict( color="whitesmoke" ))
         
     return country_bar_map
 
@@ -84,8 +87,8 @@ def generate_airport_level_bar_map(array_selected_airports=[]):
                                                 y=total_flights_df_new["Airport name"], orientation='h',
                                                 width=width)]
                         )
-    airport_bar_map.update_layout( margin={"r":20,"t":20,"l":20,"b":20}, height=height,
-                                     uniformtext_minsize=12, uniformtext_mode='hide')
+    airport_bar_map.update_layout( margin={"r":20,"t":20,"l":20,"b":20}, height=height, paper_bgcolor='rgb(128,128,128)',
+                                     uniformtext_minsize=12, uniformtext_mode='hide', font=dict( color="whitesmoke" ))
     return airport_bar_map
 
 #Graph Generating functions
@@ -114,7 +117,7 @@ def generate_country_level_map():
                        hover_data=["Total flights"], color="Total flights", 
                         size=country_level_df["scale"], color_continuous_scale=px.colors.sequential.OrRd,
                         labels={"Total flights": "Total<br>Flights"},                        
-                        size_max=50, height=600, zoom=1, width=1300)
+                        size_max=50, height=500, zoom=1, width=1200)
     fig.update_layout(mapbox_style="carto-darkmatter", 
 #                           mapbox_layers=[
 #                               {
@@ -126,7 +129,7 @@ def generate_country_level_map():
 #                                             ]
 #                              }                          ]
                      )
-    fig.update_layout(margin={"r":20,"t":20,"l":20,"b":20}, # paper_bgcolor='rgb(8,143,143)'
+    fig.update_layout(margin={"r":20,"t":20,"l":20,"b":20},  paper_bgcolor='rgb(38,70,109)', font=dict( color="whitesmoke" )
                      )
     
     return fig
@@ -140,7 +143,7 @@ def generate_airport_level_map():
                        hover_data=["Total number of flights"], color="Total number of flights", 
                         size=total_flights_df["scale"], color_continuous_scale=px.colors.sequential.OrRd,
                         labels={"Total number of flights": "Total<br>Flights"},                        
-                        size_max=50, height=600, zoom=1, width=1300)
+                        size_max=50, height=500, zoom=1, width=1200)
     airport_map.update_layout(mapbox_style="carto-darkmatter", 
 #                           mapbox_layers=[
 #                               {
@@ -152,7 +155,7 @@ def generate_airport_level_map():
 #                                             ]
 #                              }                          ], 
                               margin={"r":20,"t":20,"l":20,"b":20},  
-#                               paper_bgcolor='rgb(8,143,143)'
+                               paper_bgcolor='rgb(38,70,109)', font=dict( color="whitesmoke" )
                              )
     return airport_map
 
@@ -172,14 +175,14 @@ def generate_flight_level_map(dropdown_index,country=default_country_key):
     temp_route_df['Destination Airport Name'] = ''
     
     temp_route_df = pre_process_temp_route_data(temp_route_df)
-    temp_route_df.to_csv("routes_world_data_with_coordinates_with_airport_names.csv", index=False)
+    temp_route_df.to_csv(relpath+"routes_world_data_with_coordinates_with_airport_names.csv", index=False)
     all_latitude_coordinates = temp_route_df["source_lat"].append(temp_route_df["dest_lat"])
     all_longitude_coordinates = temp_route_df["source_lon"].append(temp_route_df["dest_lon"])
     all_airport_names = temp_route_df["Source Airport Name"].append(temp_route_df["Destination Airport Name"])
     
     list_of_trace_names = [ "From "+src+" to "+dest for src, dest in zip(temp_route_df.Source, temp_route_df.Destination)]
     temp_route_df["Trace_name"] = list_of_trace_names
-    temp_route_df.to_csv("routes_world_data_with_coordinates_with_airport_names_with_trace.csv", index=False)
+    temp_route_df.to_csv(relpath+"routes_world_data_with_coordinates_with_airport_names_with_trace.csv", index=False)
 
     print(all_airport_names)
     
@@ -245,8 +248,8 @@ def generate_flight_level_map(dropdown_index,country=default_country_key):
             showcountries=True, countrycolor="rgb(25, 25, 25)",
             
         ),
-        height=600, width=1300,
-#          paper_bgcolor='rgb(8,143,143)'
+        height=500, width=1200,
+          paper_bgcolor='rgb(38,70,109)' ##26466D
     )
     return flight_map, temp_route_df
     
@@ -258,9 +261,9 @@ app = Dash(__name__)
 
 app.layout = html.Div(children=[
     
-    dcc.Store(id='clickDataInfo'),
+    #dcc.Store(id='clickDataInfo'),
        
-    html.H1("Airlines Data Visualization", style={'text-align': 'center'}),
+    html.H1("Airlines Data Visualization", style={'text-align': 'center', 'color':'white'}),
     
     #html parent div component
     html.Div(children=[
@@ -279,38 +282,38 @@ app.layout = html.Div(children=[
                                                  ],
                                              multi=False,
                                              value="country",
-                                             style={'width': "50%", "margin": "10px"} )
+                                             style={'width': "50%", "margin": "8px"} )
 
                                 ]),
                         
-                       html.Div(id='airport_output_container', children=[], style={"margin": "5px"}),
+                       html.Div(id='airport_output_container', children=[], style={"margin": "20px", "color": "white"}),
                        html.Br(),
                        dcc.Graph(id='airport_map', figure={})
                       
                        ],
                   
-             style={'border-color': 'black', 'border-style': 'solid', 
+             style={'box-shadow': '10px 10px 16px','border-left': '1px solid black','border-top': '1px solid black','border-bottom': '1px solid black',#'border-color': 'black', 'border-style': 'solid', 
                     'grid-column-start': '1', 'grid-column-end': '2'}
             ),
         
         #Bar chart for number of flights per airline/country
         html.Div( children=[
 
-                           html.Div(id='airport_output_bar_container', children=[], style={"margin": "5px"}),
+                           html.Div(id='airport_output_bar_container', children=[], style={"margin": "5px", "color": "white"}),
                            html.Br(),
                            html.Button('Refresh', id='refresh_btn', n_clicks=0, 
                                        style={'width': "30%", "margin": "10px"}),
                            html.Br(),
                            dcc.Graph(id='airport_bar_map', figure={})],
 
-                 style={'border-color': 'black', 'border-style': 'solid',
+                 style={"background-color":"#26466D", 'padding':"5px", #'border-color': 'black', 'border-style': 'solid', 
                        'overflow-inline':'scroll'}
                 )],
              
              
         #Style of parent element
-         style={'border': '1px solid black' ,'height':800, 'padding':'10px',
-                'display': 'grid', 'grid-template-columns': 'auto auto auto auto', 'grid-gap': '5px', }
+         style={'height':700, 'padding':'10px', #'border': '1px solid black' ,
+                'display': 'grid', 'grid-template-columns': 'auto auto auto auto', 'grid-gap': '20px', 'grid-template-rows': '700px' }
              
              
              
@@ -337,7 +340,7 @@ app.layout = html.Div(children=[
 
                                                 ]),
 
-                                       html.Div(id='flight_output_container', children=[], style={"margin": "20px"}),
+                                       html.Div(id='flight_output_container', children=[], style={"margin": "20px", 'color':"white"}),
                                        html.Br(),
                                        dcc.Graph(id='flight_map', figure={})
 
@@ -345,7 +348,7 @@ app.layout = html.Div(children=[
 
                                       ],
 
-                           style={'border-color': 'black', 'border-style': 'solid', 
+                           style={'box-shadow': '10px 10px 16px','border-left': '1px solid black','border-top': '1px solid black','border-bottom': '1px solid black',#'border-color': 'black', 'border-style': 'solid', 
                     'grid-column-start': '1', 'grid-column-end': '2'}
                              ),
                      
@@ -362,19 +365,22 @@ app.layout = html.Div(children=[
 #                                                     style={'border-color': 'black', 'border-style': 'solid',
 #                                                           "margin": "20px", "padding":"20px"}
 #                                                     )
-                    ], style={'border-color': 'black', 'border-style': 'solid','overflow-inline':'scroll',
-                                                       "margin": "20px", "padding":"20px"}
+                    ], style={"background-color" : "#26466D", #'border-color': 'black', 'border-style': 'solid', 
+				'overflow-inline':'scroll', "margin": "20px", "padding":"20px"}
                     )
 
        ],
        
         #Style of parent element
-         style={'border': '1px solid black' ,'height':800, 'padding':'10px',
-                'display': 'grid', 'grid-template-columns': 'auto auto auto auto', 'grid-gap': '5px', }
+         style={'height':700, 'padding':'10px', #'border': '1px solid black' ,
+                'display': 'grid', 'grid-template-columns': 'auto auto auto auto', 'grid-gap': '5px' , 'grid-template-rows': '700px'}
    )  
     
 
-])
+], 
+	#Style of main div
+	style={'background-color': '#344152'}
+)
 
 
 # ------------------------------------------------------------------------------
@@ -388,7 +394,7 @@ app.layout = html.Div(children=[
 def update_graph(level_selected):
     print("Division 1 map for "+level_selected)
     
-    container = "Level Chosen {}".format(level_selected)
+    container = "Level : {}".format(level_selected)
    
     if(level_selected=="airport"):
         fig = generate_airport_level_map()
@@ -410,7 +416,8 @@ def update_graph(level_selected, clickData, n_clicks_timestamp):
     global clicked_labels
     global last_time_refreshed_btn_clicked
     print("Division 1 map for "+level_selected)
-    container = "Level Chosen {}".format(level_selected)+" Button: {}".format(n_clicks_timestamp)
+    container = "Level : {}".format(level_selected)
+			#+" Button: {}".format(n_clicks_timestamp)
     
     if(clickData==None or (last_time_refreshed_btn_clicked!=-1 and n_clicks_timestamp!=last_time_refreshed_btn_clicked)):
         last_time_refreshed_btn_clicked = n_clicks_timestamp
@@ -451,10 +458,10 @@ def update_graph(country_selected):
     details_trace_info = []
     print("Flight map for "+country_selected)
     
-    container = "Country Chosen {}".format(country_selected)
+    container = "Country : {}".format(country_selected)
    
     if(country_selected=="Select"):
-        container = "Country Chosen {}".format(default_country_key)
+        container = "Country : {}".format(default_country_key)
         fig, route_dataframe = generate_flight_level_map(None)
     else:
         fig, route_dataframe = generate_flight_level_map(None, country_selected)
@@ -468,8 +475,8 @@ def update_graph(country_selected):
                                                         html.Div(id={"type": "collapsible_text", "index": i},children=[])
                                                     ],
                                                     n_clicks=0,
-                                                      style={'border-color': 'black', 'border-style': 'solid',
-                                                          "margin": "20px", "padding":"20px"}
+                                                      style={#'border-color': 'black', 'border-style': 'solid',
+                                                          "margin": "20px", "padding":"20px", "color": "white", "background-color":"grey"}
                     
         )
         details_list.append(details_ele)
@@ -542,11 +549,11 @@ def toggle_collapse(n_clicks, match_id):
 #         container = "Collapsible text in side"
 #     return [f"Source: {src}"+f"\nDestination: {dest}"]
     return [ [html.H3(f"Airline: {airline}"),
-                        html.Br(),
+                        #html.Br(),
                         html.H3(f"Planes: {planes}"),
-                        html.Br(),
+                        #html.Br(),
                         html.H4(f"Source: {src}"),
-                        html.Br(),
+                        #html.Br(),
                         html.H4(f"Destination: {dest}")]]
 
 #             +f"Destination: {details_trace_info[match_id['index']]["Destination"]}"]

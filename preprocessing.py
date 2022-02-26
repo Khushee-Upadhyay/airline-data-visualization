@@ -1,8 +1,9 @@
 from urllib.request import urlopen
 import json
 import pandas as pd
+import os
 
-def generate_airport_data():
+def generate_airport_data(path):
     #Getting airport data
     url = "http://api.travelpayouts.com/data/en/airports.json"
     airport_response =  urlopen(url)
@@ -25,11 +26,11 @@ def generate_airport_data():
     df = pd.merge(country_df, airport_df, left_on=['code'], right_on=['country_code'])
     df.rename(columns={'name_x':'country_name','name_y':'Airport name', 'code_y':'code'}, inplace=True)
     df.drop(columns=['code_x','flightable','name_translations.en'],inplace=True)
-    df.to_csv("airports_with_country_names.csv", index=False)
+    df.to_csv(path+"airports_with_country_names.csv", index=False)
 
     return
 
-def generate_route_data():
+def generate_route_data(path):
     #Getting route data
     route_url = "http://api.travelpayouts.com/data/routes.json"
     route_response = urlopen(route_url)
@@ -39,40 +40,40 @@ def generate_route_data():
                                                          'planes'])
     route_df.rename(columns={'departure_airport_iata': 'Source', 'arrival_airport_iata': 'Destination'}, inplace=True)
     route_df.rename(columns={'airline_iata': 'Airline'}, inplace=True)
-    route_df.to_csv("routes_world_data.csv", index=False)
+    route_df.to_csv(path+"routes_world_data.csv", index=False)
     return
 
-def generate_total_flights_data():
-    df = pd.read_csv("airports_with_country_names.csv")
-    route_df = pd.read_csv("routes_world_data.csv")
+def generate_total_flights_data(path):
+    df = pd.read_csv(path+"airports_with_country_names.csv")
+    route_df = pd.read_csv(path+"routes_world_data.csv")
 
     #Unique airports
     airport_list = df["Airport name"].unique().tolist()
 
     #Source and Destination Flights
-    source_flights =route_df['Source'].value_counts()
+    source_flights = route_df['Source'].value_counts()
     destination_flights = route_df["Destination"].value_counts()
 
     total_flights_for_airport = source_flights.add(destination_flights, fill_value=0)
     total_flights_df = total_flights_for_airport.to_frame().reset_index()
     total_flights_df.rename(columns={0:'Total number of flights'}, inplace=True)
-    total_flights_df.to_csv("total_flights.csv",index=False)
+    total_flights_df.to_csv(path+"total_flights.csv",index=False)
 
     #Merging Airport and Route data
     new_df = df.merge(total_flights_df,left_on='code',right_on='index')
-    new_df.to_csv("total_flights_with_coordinates.csv",index=False)
+    new_df.to_csv(path+"total_flights_with_coordinates.csv",index=False)
 
-    total_flights_df = pd.read_csv("total_flights_with_coordinates.csv")
+    total_flights_df = pd.read_csv(path+"total_flights_with_coordinates.csv")
     
     #Defining scale in the total_flights_df
     #For bubble size
     total_flights_diffq = (total_flights_df["Total number of flights"].max() - total_flights_df["Total number of flights"].min()) / 16
     total_flights_df["scale"] = (total_flights_df["Total number of flights"] - total_flights_df["Total number of flights"].min()) / total_flights_diffq + 1
-    total_flights_df.to_csv("total_flights_with_coordinates_with_scale.csv", index=False)
+    total_flights_df.to_csv(path+"total_flights_with_coordinates_with_scale.csv", index=False)
     return
 
-def generate_country_level_data():
-    total_flights_df = pd.read_csv("total_flights_with_coordinates_with_scale.csv")   
+def generate_country_level_data(path):
+    total_flights_df = pd.read_csv(path+"total_flights_with_coordinates_with_scale.csv")   
     #    flights_by_country = total_flights_df.groupby(by='country_name')
     dataframe_for_country_level = pd.DataFrame(data=total_flights_df['country_name'].unique(),columns=["Country"])
     dataframe_for_country_level["Latitude"] = ''
@@ -96,10 +97,10 @@ def generate_country_level_data():
     #For bubble size
     country_level_diffq = (dataframe_for_country_level["Total flights"].max() - dataframe_for_country_level["Total flights"].min()) / 16
     dataframe_for_country_level["scale"] = (dataframe_for_country_level["Total flights"] - dataframe_for_country_level["Total flights"].min()) / country_level_diffq + 1
-    dataframe_for_country_level.to_csv("Country level flight data.csv",index=False)
+    dataframe_for_country_level.to_csv(path+"Country level flight data.csv",index=False)
     return
 
-def generate_route_data_with_coordinates():
+def generate_route_data_with_coordinates(path):
     #route_df = pd.read_csv("routes_world_data.csv")
     #total_flights_df = pd.read_csv("total_flights_with_coordinates.csv")
     #route_df["source_lat"] = ''
@@ -117,10 +118,10 @@ def generate_route_data_with_coordinates():
     #    route_df["dest_lon"].iloc[i]= total_flights_df[total_flights_df["code"]==dest_cntry]["coordinates.lon"].iloc[0]    
     #route_df.to_csv("routes_world_data_with_coordinates.csv", index=False)	
 
-    route_df = pd.read_csv("routes_world_data.csv")
+    route_df = pd.read_csv(path+"routes_world_data.csv")
     #total_flights_df = pd.read_csv("total_flights_with_coordinates_with_scale.csv")
 
-    df = pd.read_csv("airports_with_country_names.csv")
+    df = pd.read_csv(path+"airports_with_country_names.csv")
     route_df["source_lat"] = ""
     route_df["dest_lat"] = ""
     route_df["source_lon"] = ""
@@ -147,5 +148,20 @@ def generate_route_data_with_coordinates():
     
         src_lat, src_lon, dest_lat, dest_lon = -1, -1, -1, -1
 
-    route_df.to_csv("routes_world_data_with_coordinates.csv")
+    route_df.to_csv(path+"routes_world_data_with_coordinates.csv")
     return
+
+if __name__=='__main__':
+    print("Current Directory: "+os.getcwd())
+    path = os.getcwd()
+    relpath = path+"/data/"
+    print("Relative Path"+relpath)
+    #Starting Pre-Processing
+    print("STARTING PRE-PROCESSING")
+    generate_airport_data(relpath)
+    generate_route_data(relpath)
+    generate_total_flights_data(relpath)
+    generate_country_level_data(relpath)
+    generate_route_data_with_coordinates(relpath)
+    print("FINISHED PRE-PROCESSING")
+
