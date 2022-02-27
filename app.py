@@ -28,7 +28,7 @@ airport_df = pd.read_csv(relpath+"airports_with_country_names.csv")        #Func
 
 countries = total_flights_df["country_name"].unique()
 countries.sort()
-countries = np.insert(countries, 0, "Select")
+#countries = np.insert(countries, 0, "Select")
 
 
 df = total_flights_df.groupby(["country_name", "country_code"])
@@ -273,22 +273,23 @@ app.layout = html.Div(children=[
         html.Div( children=[
                         
                         html.Div( children=[
-                            
+				    html.H2("Busiest airports in the world", style={'text-align': 'center', 'color':'white'}),
+                                    dcc.Graph(id='airport_map', figure={}),
                                     dcc.Dropdown(
                                              id="level",
                                              options=[
-                                                 {"label": "Country level", "value": "country"},
-                                                 {"label": "Airport level", "value": "airport"}
+                                                 {"label": "Country", "value": "country"},
+                                                 {"label": "Airport", "value": "airport"}
                                                  ],
                                              multi=False,
                                              value="country",
-                                             style={'width': "50%", "margin": "8px"} )
+                                             style={'width': "38%", "margin": "8px"} )
 
                                 ]),
                         
                        html.Div(id='airport_output_container', children=[], style={"margin": "20px", "color": "white"}),
                        html.Br(),
-                       dcc.Graph(id='airport_map', figure={})
+
                       
                        ],
                   
@@ -298,11 +299,10 @@ app.layout = html.Div(children=[
         
         #Bar chart for number of flights per airline/country
         html.Div( children=[
-
+			   html.H2("Comparison of busiest airports in the world", style={'text-align': 'center', 'color':'white'}),
                            html.Div(id='airport_output_bar_container', children=[], style={"margin": "5px", "color": "white"}),
-                           html.Br(),
                            html.Button('Refresh', id='refresh_btn', n_clicks=0, 
-                                       style={'width': "30%", "margin": "10px"}),
+                                       style={'width': "32%", "padding": "10px", "margin":"20px","box-shadow":"3px 3px 4px grey"}),
                            html.Br(),
                            dcc.Graph(id='airport_bar_map', figure={})],
 
@@ -326,23 +326,24 @@ app.layout = html.Div(children=[
        children=[
 
                     html.Div(children=[ 
+					html.H2("Visualizing Airline Routes of various countries", style={'text-align': 'center', 'color':'white'}),
+                                        
+                                       dcc.Graph(id='flight_map', figure={}),
+					html.Div( children=[
 
-                                        html.Div( children=[
-
-
+						    
                                                      dcc.Dropdown(
                                                          id="select_country",
                                                          options=[{'label': x, 'value': x} for x in countries],
                                                          multi=False,
-                                                         value="Select",
-                                                         style={'width': "50%", "margin": "10px"}
+                                                         value=default_country_key,
+                                                         style={'width': "50%", "margin": "10px",}
                                                          )
 
                                                 ]),
 
                                        html.Div(id='flight_output_container', children=[], style={"margin": "20px", 'color':"white"}),
-                                       html.Br(),
-                                       dcc.Graph(id='flight_map', figure={})
+                                       html.Br()
 
 
 
@@ -356,7 +357,7 @@ app.layout = html.Div(children=[
 #                     'grid-column-start': '1', 'grid-column-end': '2'}),
 
                     html.Div(id="collapsible_div", children=[
-                        
+#                        	html.H2("Additional route information", style={'text-align': 'center', 'color':'white'}),
 #                             html.Details(id="collapsible",
 #                                                     children=[
 #                                                         html.Summary("Collapsible Title"),
@@ -394,7 +395,7 @@ app.layout = html.Div(children=[
 def update_graph(level_selected):
     print("Division 1 map for "+level_selected)
     
-    container = "Level : {}".format(level_selected)
+    container = "Drill down Level : {}".format(level_selected)
    
     if(level_selected=="airport"):
         fig = generate_airport_level_map()
@@ -416,7 +417,7 @@ def update_graph(level_selected, clickData, n_clicks_timestamp):
     global clicked_labels
     global last_time_refreshed_btn_clicked
     print("Division 1 map for "+level_selected)
-    container = "Level : {}".format(level_selected)
+    container = "Drill down Level : {}".format(level_selected)
 			#+" Button: {}".format(n_clicks_timestamp)
     
     if(clickData==None or (last_time_refreshed_btn_clicked!=-1 and n_clicks_timestamp!=last_time_refreshed_btn_clicked)):
@@ -466,7 +467,7 @@ def update_graph(country_selected):
     else:
         fig, route_dataframe = generate_flight_level_map(None, country_selected)
         
-    details_list = []
+    details_list = [html.H2("Additional route information", style={'text-align': 'center', 'color':'white'})]
     for i in range(len(route_dataframe)):
         summary = route_dataframe["Trace_name"].iloc[i]
         details_ele = html.Details(id={"type": "collapsible", "index": i},
